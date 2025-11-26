@@ -1,6 +1,4 @@
-# Example file showing a basic pygame "game loop"
 import pygame
-import interface
 from interface import Button
 
 # pygame setup
@@ -9,10 +7,12 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
-pygame.display.set_caption("Kalender App")
 
+pygame.display.set_caption("Kalender App")
+text_font = pygame.font.SysFont("Arial", 24)
 # Buttons
-Button1 = Button(100,100,50,50)
+Buttons = []
+Buttons.append(Button(100,100,200,64,"Begivenhed"))
 
 
 while running:
@@ -22,7 +22,11 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
-    pygame.draw.rect(screen,Button1.colors,(Button1.x,Button1.y,Button1.width,Button1.height)) # Surface = screen, color, position, dimensions
+    for button in Buttons:
+        pygame.draw.rect(screen,button.colors,(button.x,button.y,button.width,button.height))
+        button.draw_text(screen, text_font, button.textColor)
+
+
 
     # RENDER YOUR GAME HERE
 

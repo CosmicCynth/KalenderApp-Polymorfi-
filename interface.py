@@ -1,13 +1,13 @@
-import pygame.draw
-
-
-class Button(pygame.sprite.Sprite):
-    def __init__(self,x,y,width,height):
-        super().__init__()
+class Button:
+    def __init__(self, x, y, width, height, text):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.colors = (255,255,255)
+        self.text = text
+        self.colors = (255, 255, 255)
+        self.textColor = (0,0,0)
 
-
+    def draw_text(self, screen, font, color):
+        img = font.render(self.text, True, color)
+        screen.blit(img, (self.x, self.y))
