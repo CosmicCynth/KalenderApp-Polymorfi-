@@ -1,5 +1,7 @@
 # Example file showing a basic pygame "game loop"
 import pygame
+import interface
+from interface import Button
 
 # pygame setup
 pygame.init()
@@ -9,15 +11,18 @@ running = True
 
 pygame.display.set_caption("Kalender App")
 
+# Buttons
+Button1 = Button(100,100,50,50)
+
+
 while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
+    pygame.draw.rect(screen,Button1.colors,(Button1.x,Button1.y,Button1.width,Button1.height)) # Surface = screen, color, position, dimensions
 
     # RENDER YOUR GAME HERE
 
