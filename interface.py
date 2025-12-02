@@ -1,3 +1,6 @@
+import pygame.mouse
+
+
 class Button:
     def __init__(self, x, y, width, height, text, scene):
         self.x = x
@@ -15,5 +18,7 @@ class Button:
         screen.blit(img, (self.x, self.y))
 
     def is_clicked(self):
-        return "labubu"
+        mouseX,mouseY = pygame.mouse.get_pos()
+        if mouseX >= self.x and mouseX <= self.x + self.width and mouseY >= self.y and mouseY <= self.y + self.height:
+            return "labubu"
 
