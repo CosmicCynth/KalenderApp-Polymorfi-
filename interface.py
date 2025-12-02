@@ -1,14 +1,14 @@
 import pygame.mouse
 
-
 class Button:
-    def __init__(self, x, y, width, height, text, scene):
+    def __init__(self, x, y, width, height, text, scene, id):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.text = text
         self.scene = scene
+        self.id = id
 
         self.colors = (255, 255, 255)
         self.textColor = (0,0,0)
@@ -20,5 +20,7 @@ class Button:
     def is_clicked(self):
         mouseX,mouseY = pygame.mouse.get_pos()
         if mouseX >= self.x and mouseX <= self.x + self.width and mouseY >= self.y and mouseY <= self.y + self.height:
-            return "labubu"
+            print("Button works. ID: " + self.id)
+            if self.id == "labubu":
+                return "labubu"
 

@@ -8,7 +8,6 @@ clock = pygame.time.Clock()
 running = True
 
 
-
 # App setup
 global Scene
 Scene = "kalender"
@@ -19,12 +18,15 @@ mousePos = pygame.mouse.get_pos()
 #Modules
 from interface import Button
 
+#Sprites
+kalenderBG = pygame.image.load("sprites/kalenderbg.png").convert()
+
 pygame.display.set_caption("Kalender App")
 text_font = pygame.font.SysFont("Arial", 24)
 # Buttons
 Buttons = []
-Buttons.append(Button(100,100,200,64,"Begivenhed","kalender")) # X,Y, Width, Height, Text, Scene
-
+Buttons.append(Button(100,100,200,64,"Begivenhed","kalender","labubu")) # X,Y, Width, Height, Text, Scene
+Buttons.append(Button(200,300,100,64,"Quit app","kalender","quit"))
 
 while running:
     for event in pygame.event.get():
@@ -34,6 +36,10 @@ while running:
     mousePos = pygame.mouse.get_pos()
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
+    if Scene == "kalender":
+        screen.blit(kalenderBG, (0, 0))
+
+
     for button in Buttons: # Looper igennem alle knapper
         if button.scene == Scene: # Checker hvis knappens navn er lig med scene variablen
             pygame.draw.rect(screen,button.colors,(button.x,button.y,button.width,button.height)) # Tegner knappen
