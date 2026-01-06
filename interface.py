@@ -21,6 +21,6 @@ class Button:
         mouseX,mouseY = pygame.mouse.get_pos()
         if mouseX >= self.x and mouseX <= self.x + self.width and mouseY >= self.y and mouseY <= self.y + self.height:
             print("Button works. ID: " + self.id)
-            if self.id == "labubu":
-                return "labubu"
+            return self.id
+
 
