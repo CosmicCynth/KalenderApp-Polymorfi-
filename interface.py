@@ -1,7 +1,7 @@
 import pygame.mouse
 
 class Button:
-    def __init__(self, x, y, width, height, text, scene, id):
+    def __init__(self, x, y, width, height, text, scene, id, visible=True):
         self.x = x
         self.y = y
         self.width = width
@@ -9,6 +9,7 @@ class Button:
         self.text = text
         self.scene = scene
         self.id = id
+        self.visible = visible
 
         self.colors = (255, 255, 255)
         self.textColor = (0,0,0)

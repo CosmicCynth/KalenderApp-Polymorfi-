@@ -26,15 +26,33 @@ kalenderBG = pygame.image.load("sprites/kalenderbg.png").convert()
 
 pygame.display.set_caption("Kalender App")
 text_font = pygame.font.SysFont("Arial", 24)
+
+
+# Text input'
+valgteText = "nil"
+text = ""
+
+TitelInput = "Titel"
+
+
+
+
 # Buttons
 Buttons = []
-Buttons.append(Button(100,100,200,64,"Begivenhed","kalender","labubu")) # X,Y, Width, Height, Text, Scene
+Buttons.append(Button(100,100,200,64,"Begivenhed","kalender","begivenhed")) # X,Y, Width, Height, Text, Scene
 Buttons.append(Button(200,300,100,64,"Quit app","kalender","quit"))
+Buttons.append(Button(0,0,100,64,"Nisse","begivenhed","select1",False))
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if Scene == "begivenhed":
+                if event.key == pygame.K_BACKSPACE:
+                    text = TitelInput[0:-1]
+                else:
+                    text += event.unicode
     # Updating mouse position
     mousePos = pygame.mouse.get_pos()
     # Klik timer
@@ -47,18 +65,36 @@ while running:
     screen.fill("purple")
     if Scene == "kalender":
         screen.blit(kalenderBG, (0, 0))
+    elif Scene == "begivenhed":
+        print(valgteText)
+        if valgteText == "Titel":
+            TitelInput = text
 
 
-    for button in Buttons: # Looper igennem alle knapper
+        text_surface = text_font.render(TitelInput,True,(255,255,255))
+        screen.blit(text_surface,(0,0)) # Position
+
+
+
+
+
+
+
+
+    for button in Buttons:
         if button.scene == Scene: # Checker hvis knappens navn er lig med scene variablen
-            pygame.draw.rect(screen,button.colors,(button.x,button.y,button.width,button.height)) # Tegner knappen
-            button.draw_text(screen, text_font, button.textColor) # Tegner teksten til skærmen
+            if button.visible == True:
+                pygame.draw.rect(screen,button.colors,(button.x,button.y,button.width,button.height)) # Tegner knappen
+                button.draw_text(screen, text_font, button.textColor) # Tegner teksten til skærmen
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and klikCD >= klikTimer:
                 klikCD = 0
 
-                if button.is_clicked() == "labubu":
-                    Scene = "nil"
+                if button.is_clicked() == "begivenhed":
+                    Scene = button.id
+                elif button.is_clicked() == "select1":
+                    text = ""
+                    valgteText = "Titel"
 
 
 
