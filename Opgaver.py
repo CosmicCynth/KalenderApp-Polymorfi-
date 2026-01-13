@@ -10,8 +10,6 @@
 
     #opgaver.append(opgaver)
 
-    #opgaver = {"title" : "gåtur", "rengøring", "lektier"}
-    #opgaver = {"deadline" : "2 timer", "5 timer", "1 timer"}
 
 
 #færdigøre shit
