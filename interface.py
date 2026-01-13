@@ -18,10 +18,9 @@ class Button:
         img = font.render(self.text, True, color)
         screen.blit(img, (self.x, self.y))
 
-    def is_clicked(self):
-        mouseX,mouseY = pygame.mouse.get_pos()
-        if mouseX >= self.x and mouseX <= self.x + self.width and mouseY >= self.y and mouseY <= self.y + self.height:
-            print("Button works. ID: " + self.id)
-            return self.id
+    def is_clicked(self,pos):
+        mouseX, mouseY = pos
+        return self.x <= mouseX <= self.x + self.width and \
+            self.y <= mouseY <= self.y + self.height
 
 

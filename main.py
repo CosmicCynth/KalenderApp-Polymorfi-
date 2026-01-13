@@ -33,6 +33,7 @@ valgteText = "nil"
 text = ""
 
 TitelInput = "Titel"
+KategoriInput = "Kategori"
 
 
 
@@ -41,7 +42,8 @@ TitelInput = "Titel"
 Buttons = []
 Buttons.append(Button(100,100,200,64,"Begivenhed","kalender","begivenhed")) # X,Y, Width, Height, Text, Scene
 Buttons.append(Button(200,300,100,64,"Quit app","kalender","quit"))
-Buttons.append(Button(0,0,100,64,"Nisse","begivenhed","select1",False))
+Buttons.append(Button(0,0,100,64,"Nisse","begivenhed","selectTitel",False))
+Buttons.append(Button(2,100,99,32,"Work please","begivenhed","selectKategori",False))
 
 while running:
     for event in pygame.event.get():
@@ -50,9 +52,30 @@ while running:
         if event.type == pygame.KEYDOWN:
             if Scene == "begivenhed":
                 if event.key == pygame.K_BACKSPACE:
-                    text = TitelInput[0:-1]
+                    text = text[0:-1]
+                elif event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
+                    valgteText = "nil"
                 else:
                     text += event.unicode
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and klikCD >= klikCD:
+            klikCD = 0
+            pos = event.pos
+
+            for button in Buttons:
+                if button.scene == Scene:
+                    if button.is_clicked(pos):
+                        if button.id == "begivenhed":
+                            Scene = "begivenhed"
+                        elif button.id == "selectTitel":
+                            text = ""
+                            valgteText = "Titel"
+                        elif button.id == "selectKategori":
+                            text = ""
+                            valgteText = "Kategori"
+                        else:
+                            print("Clicked:", button.id)
+
+
     # Updating mouse position
     mousePos = pygame.mouse.get_pos()
     # Klik timer
@@ -69,10 +92,16 @@ while running:
         print(valgteText)
         if valgteText == "Titel":
             TitelInput = text
+        elif valgteText == "Kategori":
+            KategoriInput = text
 
 
-        text_surface = text_font.render(TitelInput,True,(255,255,255))
-        screen.blit(text_surface,(0,0)) # Position
+        title_surface = text_font.render(TitelInput,True,(255,255,255))
+        screen.blit(title_surface,(0,0)) # Position
+
+        kategori_surface = text_font.render(KategoriInput,True,(255,255,255))
+        screen.blit(kategori_surface,(0,100)) # Position
+
 
 
 
@@ -87,14 +116,6 @@ while running:
                 pygame.draw.rect(screen,button.colors,(button.x,button.y,button.width,button.height)) # Tegner knappen
                 button.draw_text(screen, text_font, button.textColor) # Tegner teksten til skærmen
 
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and klikCD >= klikTimer:
-                klikCD = 0
-
-                if button.is_clicked() == "begivenhed":
-                    Scene = button.id
-                elif button.is_clicked() == "select1":
-                    text = ""
-                    valgteText = "Titel"
 
 
 
