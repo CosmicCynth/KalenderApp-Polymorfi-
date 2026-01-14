@@ -6,8 +6,8 @@ pygame.init()
 screen = pygame.display.set_mode((400, 800))
 clock = pygame.time.Clock()
 running = True
-klikCD = 0
-klikTimer = 30 
+klikCD = 0 # Timer
+klikTimer = 30 # Tiden inden brugeren må klikke som er et halv sek
 
 
 
@@ -34,6 +34,7 @@ text = ""
 
 TitelInput = "Titel"
 KategoriInput = "Kategori"
+TidspunktInput = "Tidspunkt"
 
 
 
@@ -44,6 +45,7 @@ Buttons.append(Button(100,100,200,64,"Begivenhed","kalender","begivenhed")) # X,
 Buttons.append(Button(200,300,100,64,"Quit app","kalender","quit"))
 Buttons.append(Button(0,0,100,64,"Nisse","begivenhed","selectTitel",False))
 Buttons.append(Button(2,100,99,32,"Work please","begivenhed","selectKategori",False))
+Buttons.append(Button(2,200,99,32,"Work please1","begivenhed","selectTidspunkt",False))
 
 while running:
     for event in pygame.event.get():
@@ -72,6 +74,9 @@ while running:
                         elif button.id == "selectKategori":
                             text = ""
                             valgteText = "Kategori"
+                        elif button.id == "selectTidspunkt":
+                            text = ""
+                            valgteText = "Tidspunkt"
                         else:
                             print("Clicked:", button.id)
 
@@ -94,6 +99,8 @@ while running:
             TitelInput = text
         elif valgteText == "Kategori":
             KategoriInput = text
+        elif valgteText == "Tidspunkt":
+            TidspunktInput = text
 
 
         title_surface = text_font.render(TitelInput,True,(255,255,255))
@@ -102,6 +109,8 @@ while running:
         kategori_surface = text_font.render(KategoriInput,True,(255,255,255))
         screen.blit(kategori_surface,(0,100)) # Position
 
+        tidspunkt_surface = text_font.render(TidspunktInput, True, (255, 255, 255))
+        screen.blit(tidspunkt_surface, (0, 200))  # Position
 
 
 
