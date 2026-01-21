@@ -81,7 +81,7 @@ while running:
                             text = ""
                             valgteText = "Tidspunkt"
                         elif button.id == "LavBegivenhed":
-                            nyBegivenhed(TitelInput,KategoriInput,"67",TidspunktInput)
+                            nyBegivenhed(TitelInput,KategoriInput,"24 Juli 2067",TidspunktInput)
                         else:
                             print("Clicked:", button.id)
 
