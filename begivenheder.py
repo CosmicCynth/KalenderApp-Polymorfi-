@@ -28,21 +28,15 @@ class BegivenhedsRegister:
 bib = BegivenhedsRegister()
 
 
-def nyBegivenhed():
-    registrerSvar = input("Vil du oprette en ny begivenhed? (ja/nej): ").lower()
+def nyBegivenhed(titlebeg,kategoribeg,datebeg,timebeg):
+    title = titlebeg
+    kategori = kategoribeg
+    date = datebeg
+    time = timebeg
 
-    if registrerSvar == "ja":
-        title = input("Navn: ")
-        kategori = input("Kategori: ")
-        date = input("Dato: ")
-        time = input("Tidspunkt: ")
-
-        ny_begivenhed = Begivenhed(title, kategori, date, time)
-        bib.tilføj(ny_begivenhed)
-        print("Begivenhed oprettet!")
-    else:
-        print("Ingen begivenhed oprettet")
+    ny_begivenhed = Begivenhed(title, kategori, date, time)
+    bib.tilføj(ny_begivenhed)
+    print("Begivenhed oprettet!")
+    bib.vis()
 
 
-nyBegivenhed()
-bib.vis()

@@ -1,5 +1,6 @@
 import pygame
 
+from begivenheder import nyBegivenhed
 
 # pygame setup
 pygame.init()
@@ -20,6 +21,7 @@ mousePos = pygame.mouse.get_pos()
 
 #Modules
 from interface import Button
+import begivenheder
 
 #Sprites
 kalenderBG = pygame.image.load("sprites/kalenderbg.png").convert()
@@ -46,6 +48,7 @@ Buttons.append(Button(200,300,100,64,"Quit app","kalender","quit"))
 Buttons.append(Button(0,0,100,64,"Nisse","begivenhed","selectTitel",False))
 Buttons.append(Button(2,100,99,32,"Work please","begivenhed","selectKategori",False))
 Buttons.append(Button(2,200,99,32,"Work please1","begivenhed","selectTidspunkt",False))
+Buttons.append(Button(2,300,99,32,"Færdig?","begivenhed","LavBegivenhed",True))
 
 while running:
     for event in pygame.event.get():
@@ -77,15 +80,18 @@ while running:
                         elif button.id == "selectTidspunkt":
                             text = ""
                             valgteText = "Tidspunkt"
+                        elif button.id == "LavBegivenhed":
+                            nyBegivenhed(TitelInput,KategoriInput,"67",TidspunktInput)
                         else:
                             print("Clicked:", button.id)
+
 
 
     # Updating mouse position
     mousePos = pygame.mouse.get_pos()
     # Klik timer
-    if klikCD != klikTimer:
-        print(klikCD)
+    #if klikCD != klikTimer:
+        #print(klikCD)
     if klikCD < klikTimer:
         klikCD += 1
 
@@ -94,7 +100,7 @@ while running:
     if Scene == "kalender":
         screen.blit(kalenderBG, (0, 0))
     elif Scene == "begivenhed":
-        print(valgteText)
+        #print(valgteText)
         if valgteText == "Titel":
             TitelInput = text
         elif valgteText == "Kategori":
