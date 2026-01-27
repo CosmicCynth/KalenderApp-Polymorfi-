@@ -22,6 +22,9 @@ mousePos = pygame.mouse.get_pos()
 #Modules
 from interface import Button
 import begivenheder
+from begivenheder import nyBegivenhed
+
+
 
 #Sprites
 kalenderBG = pygame.image.load("sprites/kalenderbg.png").convert()
