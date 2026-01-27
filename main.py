@@ -40,6 +40,8 @@ text = ""
 TitelInput = "Titel"
 KategoriInput = "Kategori"
 TidspunktInput = "Tidspunkt"
+DatoInput = "Dato"
+TypeInput = "Type [normal,heldag,årlig eller online?]"
 
 
 
@@ -51,7 +53,9 @@ Buttons.append(Button(200,300,100,64,"Quit app","kalender","quit"))
 Buttons.append(Button(0,0,100,64,"Nisse","begivenhed","selectTitel",False))
 Buttons.append(Button(2,100,99,32,"Work please","begivenhed","selectKategori",False))
 Buttons.append(Button(2,200,99,32,"Work please1","begivenhed","selectTidspunkt",False))
-Buttons.append(Button(2,300,99,32,"Færdig?","begivenhed","LavBegivenhed",True))
+Buttons.append(Button(2,300,99,32,"Work please2","begivenhed","selectDato",False))
+Buttons.append(Button(2,400,99,32,"Work please3","begivenhed","selectType",False))
+Buttons.append(Button(2,500,99,32,"Færdig?","begivenhed","LavBegivenhed",True))
 
 while running:
     for event in pygame.event.get():
@@ -83,8 +87,14 @@ while running:
                         elif button.id == "selectTidspunkt":
                             text = ""
                             valgteText = "Tidspunkt"
+                        elif button.id == "selectDato":
+                            text = ""
+                            valgteText = "Dato"
+                        elif button.id == "selectType":
+                            text = ""
+                            valgteText = "Type"
                         elif button.id == "LavBegivenhed":
-                            nyBegivenhed(TitelInput,KategoriInput,"24 Juli 2067",TidspunktInput)
+                            nyBegivenhed(TitelInput,KategoriInput,DatoInput,TidspunktInput,TypeInput)
                         else:
                             print("Clicked:", button.id)
 
@@ -110,6 +120,10 @@ while running:
             KategoriInput = text
         elif valgteText == "Tidspunkt":
             TidspunktInput = text
+        elif valgteText == "Dato":
+            DatoInput = text
+        elif valgteText == "Type":
+            TypeInput = text
 
 
         title_surface = text_font.render(TitelInput,True,(255,255,255))
@@ -121,6 +135,11 @@ while running:
         tidspunkt_surface = text_font.render(TidspunktInput, True, (255, 255, 255))
         screen.blit(tidspunkt_surface, (0, 200))  # Position
 
+        dato_surface = text_font.render(DatoInput, True, (255, 255, 255))
+        screen.blit(dato_surface, (0, 300))  # Position
+
+        type_surface = text_font.render(TypeInput, True, (255, 255, 255))
+        screen.blit(type_surface, (0, 400))  # Position
 
 
 
