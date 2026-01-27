@@ -1,4 +1,4 @@
-# --- POLYMORFI TILFØJET OG FEJL RETTET ---
+
 
 class Begivenhed:
     def __init__(self, title, kategori, date, time):
