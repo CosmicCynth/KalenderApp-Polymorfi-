@@ -1,20 +1,4 @@
 
-#opgaver = dict()
-
-
-#class opgaver:
-    #def __init__(self, title, kort_beskrivelse, deadline):
-        #self.title = title
-        #self.kort_beskrivelse = kort_beskrivelse
-        #self.deadline = deadline
-
-    #opgaver.append(opgaver)
-
-
-
-#færdigøre shit
-
-
 
 class opgave:
     def __init__(self, titel):
